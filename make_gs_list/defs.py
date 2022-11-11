@@ -17,6 +17,7 @@ def Search(inp_text):
             condition = Q(eng__iexact=gs)
             condition2 = condition2 | condition
         results = GoodsService.objects.filter(condition2).order_by('cls','ruijigun')
+        #区分の桁数を2桁にそろえる
     #日本語→英語
     else:
         l_gs = inp_text.split('，')
@@ -28,7 +29,7 @@ def Search(inp_text):
         results = GoodsService.objects.filter(condition2).order_by('cls','ruijigun')
     return results
 
-#検索に引っかからない商品役務を文字列で返す
+""" #検索に引っかからない商品役務を文字列で返す
 def CheckNoFind(inp_text):
     results = ''
     #頭文字から英語か日本語か判断する
@@ -45,7 +46,7 @@ def CheckNoFind(inp_text):
             if GoodsService.objects.filter(jpn=gs).exists() == 0:
                 results += gs + '，'
     results = results[0:-1]
-    return results
+    return results """
 
 #商品役務をそのまま翻訳する
 def Translate(inp_text):
@@ -55,7 +56,7 @@ def Translate(inp_text):
     honyaku = ''
      #頭文字から英語か日本語か判断する
     if re.fullmatch('[a-zA-Z]+',inp_text[0:1]):
-        #英語→日本語の場合
+        #英語→日本語の場合、セミコロンを区切り文字としてリスト化
         l_gs = inp_text.split('; ')
         #検索する
         for gs in l_gs:
@@ -63,10 +64,12 @@ def Translate(inp_text):
                 for gs2 in GoodsService.objects.filter(eng__iexact=gs):
                     honyaku += gs2.jpn + '，'
             elif GoodsService.objects.filter(eng__iexact=gs).count() > 1:
+                honyaku += '<font class="text-danger">［複数候補：' + gs + '］'
                 for gs2 in GoodsService.objects.filter(eng__iexact=gs):
-                    honyaku += '!!候補が複数あります!!（' + gs2.jpn + '），'
+                    honyaku += gs2.jpn + '/'
+                honyaku = honyaku[:-1] + '</font>， '
             elif GoodsService.objects.filter(eng__iexact=gs).count() == 0:
-                honyaku += '!!見つかりません!!（' + gs + '）' + '，'
+                honyaku += '<font class="text-danger">［不明：' + gs + ']</font>' + '，'
                 nofind += gs + '，'
         #末尾のコンマ、コロンとる
         honyaku = honyaku[0:-1]
@@ -79,10 +82,12 @@ def Translate(inp_text):
                 for gs2 in GoodsService.objects.filter(jpn__iexact=gs):
                     honyaku += gs2.eng + '; '
             elif GoodsService.objects.filter(jpn__iexact=gs).count() > 1:
+                honyaku += '<font class="text-danger">［複数候補：' + gs + '］'
                 for gs2 in GoodsService.objects.filter(jpn__iexact=gs):
-                    honyaku += '!!候補が複数あります!!（' + gs2.eng + '）; '
+                    honyaku += gs2.eng + '/'
+                honyaku = honyaku[:-1] + '</font>; '
             elif GoodsService.objects.filter(jpn__iexact=gs).count() == 0:
-                honyaku += '!!見つかりません!!（' + gs + '）' + '; '
+                honyaku += '<font class="text-danger">［不明：' + gs + '］</font>' + '; '
                 nofind += gs + '，'
         #末尾のコンマ、コロンとる
         honyaku = honyaku[0:-2]
