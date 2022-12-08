@@ -1,3 +1,6 @@
+import sys
+sys.path.append('/usr/local/lib/python3.9/site-packages')
+
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.conf import settings
