@@ -1,0 +1,46 @@
+﻿1,1,chemicals,化学品,01A01,
+2,1,inorganic acids,無機酸類,01E01,
+3,1,sulfurous acid,亜硫酸,01E01B,10502
+4,1,chlorosulphonic acid,塩化スルホン酸,01A01,
+5,1,hydrochloric acid,塩酸,01A01,10185
+6,1,perchloric acid,過塩素酸,01A01,
+7,1,mixed acids,混酸,01A01,
+8,1,nitric acid,硝酸,01A01,10095
+9,1,tungstic acid,タングステン酸,01A01,10541
+10,1,boric acid,ほう酸,01A01,
+11,1,iodic acid,よう素酸,01A01,10367
+12,1,sulfuric acid,硫酸,01A01,10503
+13,1,phosphoric acid,りん酸,01A01,
+14,1,alkalies,アルカリ類,01A01,10037
+15,1,ammonia water,アンモニア水,01A01,
+16,1,caustic potash [potassium hydroxide],か性カリ,01A01,
+17,1,caustic soda,か性ソーダ,01A01,
+18,1,slaked lime,消石灰,01A01,
+19,1,aluminium hydroxide,水酸化アルミニウム,01A01,
+20,1,calcium hydroxide,水酸化カルシウム,01A01,
+21,1,cerium hydroxide,水酸化セリウム,01A01,
+22,1,barium hydroxide,水酸化バリウム,01A01,
+23,1,magnesium hydroxide,水酸化マグネシウム,01A01,
+24,1,inorganic salts,無機塩類,01A01,
+25,1,halides and halogen acid salts,ハロゲン化物及びハロゲン酸塩,01A01,
+26,1,sodium chlorite,亜塩素酸ソーダ,01A01,
+27,1,zinc chloride,塩化亜鉛,01A01,
+28,1,aluminium chloride,塩化アルミニウム,01A01,10050
+29,1,ammonium chloride,塩化アンモニウム,01A01,
+30,1,potassium chloride,塩化カリ,01A01,
+31,1,calcium chloride,塩化カルシウム,01A01,
+32,1,gold chloride,塩化金,01A01,
+33,1,silver chloride,塩化銀,01A01,
+34,1,chromium chloride,塩化クロム,01A01,
+35,1,zirconium chloride,塩化ジルコニウム,01A01,
+36,1,tin chloride,塩化すず,01A01,
+37,1,cerium chloride,塩化セリウム,01A01,
+38,1,bismuth chloride,塩化そう鉛,01A01,
+39,1,iron chloride,塩化鉄,01A01,
+40,1,palladium chloride,塩化パラジウム,01A01,10415
+41,1,barium chloride,塩化バリウム,01A01,
+42,1,magnesium chloride,塩化マグネシウム,01A01,10383
+43,1,manganese chloride,塩化マンガン,01A01,
+44,1,phosphorus chloride,塩化りん,01A01,
+45,1,sodium chlorate,塩素酸ソーダ,01A01,
+46,1,ammonium perchlorate,過塩素酸アンモニウム,01A01,
