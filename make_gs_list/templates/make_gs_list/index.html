@@ -8,7 +8,7 @@
 </head>
 <body class="container">
     <h1 class="display-6">{{title}}</h1>
-    <form action="{% url 'index' %}" method="post">
+    <form action="{% url 'index' %}" method="post" name="input">
         {% csrf_token %}
         {{form.as_p}}
         <p><input type="submit" value="翻訳・一覧作成"></p>
@@ -18,6 +18,13 @@
         <tbody><tr><td>{{honyaku | safe}}</td></tr></tbody>
     </table>
     <br>
+    <form action="{% url 'download' %}" method="post" name="hidden">
+        {% csrf_token %}
+        {% for id in ids %}
+            <input name="id" type="hidden" value={{id}}>
+        {% endfor %}
+        <p><input type="submit" value="Download"></p>
+    </form>
     <table class="table table-striped">
         <thead class="table-dark">
         <tr>
@@ -32,7 +39,26 @@
         {% endfor %}
         </tbody>
     </table>
-        {% if nofind != ''%}
-        <p class="text-danger">以下の商品役務は見つかりませんでした</p><p>{{nofind}}</p>
+        {% if nofind %}
+            <p class="text-danger">以下の商品役務は見つかりませんでした</p>
+            <table class="table table-striped">
+                <thead class="table-dark">
+                <tr>
+                    <th scope="col">区分</th><th scope="col">日本語</th><th scope="col">英語</th><th scope="col">類似群</th><th scope="col">種別</th><th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <form action="{% url 'nofind' %}" method="post" name="nofind">
+                {% for item in nofind %}
+                    <tr>
+                        <td><input type="text" name="cls" required minlength="1" maxlength="2" size="5"></td>
+                        <td><input type="hidden" name="item" value={{item}}>{{item}}</td>
+                        <td><input type="hidden" name="item" value={{item}}>{{item}}</td>
+                        <td>/td>
+                        <td>/td>
+                        <td><input type="submit" value="区分を入力して検索" name="add"></td>
+                    </tr>
+                {% endfor %}
+                </form>
         {% endif%}
 </body></html>
