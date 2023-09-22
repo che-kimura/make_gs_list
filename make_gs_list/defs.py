@@ -61,10 +61,14 @@ def Translate(inp_text):
     nofind = []
     #翻訳
     honyaku = ''
-     #頭文字から英語か日本語か判断する
+    #英日フラグ
+    lang = ''
+    #頭文字から英語か日本語か判断する
     if re.fullmatch('[a-zA-Z]+',inp_text[0:1]):
         #英語→日本語の場合、セミコロンを区切り文字としてリスト化
         l_gs = inp_text.split('; ')
+        #出力言語を日本語にする
+        lang = 'EN'
         #検索する
         for gs in l_gs:
             if GoodsService.objects.filter(eng__iexact=gs).count() == 1:
@@ -82,6 +86,8 @@ def Translate(inp_text):
         honyaku = honyaku[0:-1]
     else:
         #日本語→英語の場合
+        #出力言語を英語にする
+        lang = 'JP'
         l_gs = inp_text.split('，')
         #検索する
         for gs in l_gs:
@@ -99,7 +105,7 @@ def Translate(inp_text):
         #末尾のコンマ、コロンとる
         honyaku = honyaku[0:-2]
         #print(nofind)
-    return honyaku, nofind
+    return honyaku, nofind, lang
 
 #商品役務のIDを取得してExcelに出力する
 def WriteExcel(id_list):
