@@ -11,7 +11,7 @@ import pathlib
 from .forms import InForm
 from .models import GoodsService
 from .defs import Search, Translate, WriteExcel
-from .platpat import SearchJP
+#from .platpat import SearchJP
 from django.db.models import Q
 
 def index(request):
