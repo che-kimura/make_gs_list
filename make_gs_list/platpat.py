@@ -10,7 +10,6 @@ from django.conf import settings
 
 from selenium.webdriver import Chrome, ChromeOptions
 from selenium.webdriver.common.keys import Keys
-import chromedriver_binary
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -21,7 +20,8 @@ from selene.browsers import BrowserName
 #ChromeDriverの自動バージョン適用
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-#from webdriver_manager.chrome import ChromeDriverManager
+#サーバ用にコメントアウト
+#import chromedriver_binary
 
 def SearchGS(key_cls,key_item):
     count = ''
