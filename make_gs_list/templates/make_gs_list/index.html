@@ -44,7 +44,7 @@
             <table class="table table-striped">
                 <thead class="table-dark">
                 <tr>
-                    <th scope="col">区分</th><th scope="col">商品役務名</th><th scope="col"></th>
+                    <th scope="col">区分</th><th scope="col">商品役務名</th><th scope="col">英語</th><th scope="col">類似群</th><th scope="col">種別</th><th scope="col"></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -53,8 +53,27 @@
                     <tr>
                         <form action="{% url 'nofind' %}" method="post" name="nofind" target="_blank">
                         {% csrf_token %}
+                        {% if cls %}
+                        <td><input type="hidden" name="cls" value={{cls}}>{{cls}}</td>
+                        {% else %}
                         <td><input type="text" name="cls" required minlength="1" maxlength="2" size="5"></td>
+                        {% endif %}
                         <td><input type="hidden" name="item" value={{item}}>{{item}}</td>
+                        {% if eng %}
+                        <td><input type="hidden" name="eng" value={{eng}}>{{eng}}</td>
+                        {% else %}
+                        <td></td>
+                        {% endif %}
+                        {% if eng %}
+                        <td><input type="hidden" name="grpcode" value={{grpcode}}>{{grpcode}}</td>
+                        {% else %}
+                        <td></td>
+                        {% endif %}
+                        {% if dtype %}
+                        <td><input type="hidden" name="dtype" value={{dtype}}>{{dtype}}</td>
+                        {% else %}
+                        <td></td>
+                        {% endif %}
                         <td><input type="submit" value="区分を入力して検索" name="gssearch"></td>
                         {% csrf_token %}
                         {% for id in ids %}
