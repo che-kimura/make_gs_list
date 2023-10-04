@@ -16,10 +16,6 @@ from .defs import Search, Translate, WriteExcel
 from .platpat import SearchGS
 from django.db.models import Q
 
-# application/write_data.pyをインポートする
-#from .application import write_data
-from .application import platpat
-
 # ajaxでurl指定したメソッド
 def call_write_data(request):
     if request.method == 'GET':
