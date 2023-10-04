@@ -14,8 +14,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-from selene.api import *
-from selene.browsers import BrowserName
+#from selene.api import *
+#from selene.browsers import BrowserName
 
 #ChromeDriverの自動バージョン適用
 from selenium import webdriver
