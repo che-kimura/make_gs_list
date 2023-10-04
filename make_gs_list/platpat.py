@@ -20,7 +20,7 @@ from selenium.webdriver.support import expected_conditions as EC
 #ChromeDriverの自動バージョン適用
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-#サーバ用にコメントアウト
+#サーバ用にコメントアウト%%テストでは戻す%%
 #import chromedriver_binary
 
 def SearchGS(key_cls,key_item):
