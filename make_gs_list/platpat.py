@@ -29,6 +29,7 @@ def SearchGS(key_cls,key_item):
     dtype_tmp = ''
     options = Options()
     options.add_argument('--headless')
+    options.add_argument('--no-sandbox')
 
     #[pythonanywereサーバ用]
     driver = webdriver.Chrome(options=options)
