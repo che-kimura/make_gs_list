@@ -36,8 +36,8 @@ def SearchGS(key_cls,key_item):
     #[テスト環境用]テスト環境だとchromeのバージョンが合わないので
     #クロムドライバーのパス
     #driver_path = os.path.dirname(os.path.abspath(__file__)) + '\\'+'chromedriver.exe'
-
-    driver = webdriver.Chrome(executable_path=driver_path, options=options)
+    #driver = webdriver.Chrome(executable_path=driver_path, options=options)
+    
     #PlatPatにアクセス
     driver.get("https://www.j-platpat.inpit.go.jp/t1201")
     i = 0
