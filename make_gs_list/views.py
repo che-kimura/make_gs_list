@@ -16,24 +16,6 @@ from .defs import Search, Translate, WriteExcel
 from .platpat import SearchGS
 from django.db.models import Q
 
-# ajaxでurl指定したメソッド
-def call_write_data(request):
-    if request.method == 'GET':
-        # write_data.pyのwrite_csv()メソッドを呼び出す。
-        # ajaxで送信したデータのうち"input_data"を指定して取得する。
-        write_data.write_csv(request.GET.get("input_data"))
-        return HttpResponse()
-
-def test_page(request):
-    return render(request, 'make_gs_list/test.html')
-
-def test(request):
-    if request.method == 'GET':
-        # write_data.pyのwrite_csv()メソッドを呼び出す。
-        # ajaxで送信したデータのうち"input_data"を指定して取得する。
-        platpat.test(request.GET.get("input_data"))
-        return HttpResponse()
-
 def index(request):
     params = {
         'title':'GOODS & SERVICE',
@@ -93,6 +75,22 @@ def nofind(request):
         gs_tmp = SearchGS(key_cls,key_item)
         elements['gs'] = gs_tmp
     return render(request, 'make_gs_list/gslist.html', elements)
+# ajaxでurl指定したメソッド
+def call_write_data(request):
+    if request.method == 'GET':
+        # write_data.pyのwrite_csv()メソッドを呼び出す。
+        # ajaxで送信したデータのうち"input_data"を指定して取得する。
+        write_data.write_csv(request.GET.get("input_data"))
+        return HttpResponse()
 
+def test_page(request):
+    return render(request, 'make_gs_list/test.html')
+
+def test(request):
+    if request.method == 'GET':
+        # write_data.pyのwrite_csv()メソッドを呼び出す。
+        # ajaxで送信したデータのうち"input_data"を指定して取得する。
+        platpat.test(request.GET.get("input_data"))
+        return HttpResponse()
 
 

@@ -11,7 +11,6 @@ def Search(inp_text):
     condition = Q()
     condition2 = Q()
     #頭文字から英語か日本語か判断する
-    #sql = 'select * from make_gs_list_goodsservice where '
     #英語→日本語
     if re.fullmatch('[a-zA-Z]+',inp_text[0:1]):
         l_gs = inp_text.split('; ')
@@ -19,9 +18,9 @@ def Search(inp_text):
         #1アイテムずつ検索する条件をOrでつなげる
         for gs in l_gs:
             condition = Q(eng__iexact=gs)
+            #検索条件をORでつなげる
             condition2 = condition2 | condition
         results = GoodsService.objects.filter(condition2).order_by('cls','ruijigun')
-        #区分の桁数を2桁にそろえる
     #日本語→英語
     else:
         l_gs = inp_text.split('，')
@@ -35,25 +34,6 @@ def Search(inp_text):
     for item in results:
         ids.append(item.id) 
     return results, ids
-
-""" #検索に引っかからない商品役務を文字列で返す
-def CheckNoFind(inp_text):
-    results = ''
-    #頭文字から英語か日本語か判断する
-    if re.fullmatch('[a-zA-Z]+',inp_text[0:1]):
-        l_gs = inp_text.split('; ')
-        #検索する
-        for gs in l_gs:
-            if GoodsService.objects.filter(eng=gs).exists() == 0:
-                results += gs + '; '
-    else:
-        l_gs = inp_text.split('，')
-        #検索する
-        for gs in l_gs:
-            if GoodsService.objects.filter(jpn=gs).exists() == 0:
-                results += gs + '，'
-    results = results[0:-1]
-    return results """
 
 #商品役務をそのまま翻訳する
 def Translate(inp_text):
@@ -124,9 +104,28 @@ def WriteExcel(id_list):
     ws = wb['Sheet']
     #見出しを入力
     #出力ヘッダーを設定
-    ws.append(['区分','商品役務（日本語）','商品（英語）','類似群コード','NICEコード'])
+    ws.append(['区分','商品役務（日本語）','商品（英語）','類似群コード','データ種別'])
     # # #値を入力
     for item in results:
         ws.append([item.cls,item.jpn,item.eng,item.ruijigun,item.nice])
     #所定の場所に保存
     wb.save(str(settings.BASE_DIR) + '/media/Goods_Service_list.xlsx')
+
+""" #検索に引っかからない商品役務を文字列で返す
+def CheckNoFind(inp_text):
+    results = ''
+    #頭文字から英語か日本語か判断する
+    if re.fullmatch('[a-zA-Z]+',inp_text[0:1]):
+        l_gs = inp_text.split('; ')
+        #検索する
+        for gs in l_gs:
+            if GoodsService.objects.filter(eng=gs).exists() == 0:
+                results += gs + '; '
+    else:
+        l_gs = inp_text.split('，')
+        #検索する
+        for gs in l_gs:
+            if GoodsService.objects.filter(jpn=gs).exists() == 0:
+                results += gs + '，'
+    results = results[0:-1]
+    return results """
