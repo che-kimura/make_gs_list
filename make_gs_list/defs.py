@@ -8,6 +8,8 @@ import pathlib
 
 def Search(inp_text):
     results = []
+    ids = []
+    sorted_results = []
     condition = Q()
     condition2 = Q()
     #頭文字から英語か日本語か判断する
@@ -20,20 +22,38 @@ def Search(inp_text):
             condition = Q(eng__iexact=gs)
             #検索条件をORでつなげる
             condition2 = condition2 | condition
-        results = GoodsService.objects.filter(condition2).order_by('cls','ruijigun')
+        #results = GoodsService.objects.filter(condition2).order_by('cls','ruijigun')
+        results = GoodsService.objects.filter(condition2)
+        #入力順にする
+        for gs2 in l_gs:
+            for item in results:
+                if item.eng == gs2:
+                    sorted_results.append(item)
+                    ids.append(item.id)
+                    continue
     #日本語→英語
     else:
         l_gs = inp_text.split('，')
+        print(l_gs)
         #検索する
         #1アイテムずつ検索する条件をOrでつなげる
         for gs in l_gs:
             condition = Q(jpn__iexact=gs)
             condition2 = condition2 | condition
-        results = GoodsService.objects.filter(condition2).order_by('cls','ruijigun')
-    ids = []
-    for item in results:
-        ids.append(item.id) 
-    return results, ids
+        #results = GoodsService.objects.filter(condition2).order_by('cls','ruijigun')
+        results = GoodsService.objects.filter(condition2)
+        #入力順にする
+        for gs2 in l_gs:
+            for item in results:
+                if item.jpn == gs2:
+                    sorted_results.append(item)
+                    ids.append(item.id)
+                    continue
+    # for item in results:
+    #     ids.append(item.id)
+    #     sorted_results.append(item) 
+    #return results, ids
+    return sorted_results,ids
 
 #商品役務をそのまま翻訳する
 def Translate(inp_text):
