@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'make_gs_list',
+    'make_estimate',
 ]
 
 MIDDLEWARE = [

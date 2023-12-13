@@ -20,7 +20,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('make_gs_list/', include('make_gs_list.urls'))
+    path('make_gs_list/', include('make_gs_list.urls')),
+    path('make_estimate/', include('make_estimate.urls'))
 ]
 #mediaフォルダの設定
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
