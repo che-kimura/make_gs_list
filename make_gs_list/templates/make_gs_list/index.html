@@ -8,7 +8,7 @@
 </head>
 <body class="container">
     <h1 class="display-6">{{title}}</h1>
-    <form action="{% url 'index' %}" method="post" name="input">
+    <form action="{% url 'make_gs_list:index' %}" method="post" name="input">
         {% csrf_token %}
         {{form.as_p}}
         <p><input type="submit" value="翻訳・一覧作成"></p>
@@ -18,7 +18,7 @@
         <tbody><tr><td>{{honyaku | safe}}</td></tr></tbody>
     </table>
     <br>
-    <form action="{% url 'download' %}" method="post" name="hidden">
+    <form action="{% url 'make_gs_list:download' %}" method="post" name="hidden">
         {% csrf_token %}
         {% for id in ids %}
             <input name="id" type="hidden" value={{id}}>
@@ -52,7 +52,7 @@
                 {% for item in nofind %}
                     {% if lang == 'JP' %}
                     <tr>
-                        <form action="{% url 'nofind' %}" method="post" name="nofind">
+                        <form action="{% url 'make_gs_list:nofind' %}" method="post" name="nofind">
                         {% csrf_token %}
                         <td><input type="text" name="cls" required minlength="1" maxlength="2" size="5"></td>
                         <td><input type="hidden" name="item" value={{item}}>{{item}}</td>
